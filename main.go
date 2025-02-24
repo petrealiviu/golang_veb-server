@@ -1,11 +1,14 @@
+package main
 
-type Person struct {
-	Name string
-	Age  int
-}
-
-var people []Person
+import (
+	"fmt"
+	"html"
+	"net/http"
+)
 
 func main() {
-	http.HandlerFunc
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hello from server %q", html.EscapeString(r.URL.Path))
+	})
+	http.ListenAndServe(":8080", nil)
 }
